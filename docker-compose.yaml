@@ -1,0 +1,15 @@
+version: '2.3'
+services:
+  jupyter-lab:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./tf-docker:/tf-docker
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
